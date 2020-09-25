@@ -50,45 +50,45 @@
                     <input id="mobileInput" minlength="10" maxlength="10"
                         class="bg-white w-full rounded border border-gray-400 focus:outline-none focus:border-teal-500 text-base px-4 py-2 mb-4"
                         placeholder="Enter Mobile No." type="text">
-                    <input id="otpInput"
+                    <input id="otpInput" minlength="6" maxlength="6"
                         class="bg-white rounded hidden w-full border border-gray-400 focus:outline-none focus:border-teal-500 text-base px-4 py-2 mb-4"
-                        placeholder="OTP Here" type="number">
+                        placeholder="OTP Here" type="text">
                     <button id="sendOtpBtn"
                         class="text-white bg-teal-500 w-1/2 m-auto border-0 py-2 px-8 focus:outline-none hover:bg-teal-600 rounded text-lg">Send
                         OTP</button>
                     <button id="loginBtn"
                         class="text-white hidden bg-teal-500 w-1/2 m-auto border-0 py-2 px-8 focus:outline-none hover:bg-teal-600 rounded text-lg">Login</button>
-                    <p class="text-xs text-center text-gray-500 mt-3">New User ? <a href="signup.html"
-                            class="text-teal-500 font-bold" id="signUpBoxToggle">Sign Up</a></p>
+                    <p class="text-xs text-center text-gray-500 mt-3">New User ? <a class="text-teal-500 font-bold"
+                            id="signUpBoxToggle">Sign Up</a></p>
                     <!-- </form> -->
                 </div>
-            </div>
-
-            <div
-                class="lg:w-2/6 hidden md:w-1/2 bg-gray-200 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-5 md:mt-0">
-                <div class="formBox" id="signUpBox">
+                <div class="formBox hidden" id="signUpBox">
                     <h2 class="text-gray-900 text-lg poppin font-semibold title-font mb-5">Sign Up</h2>
-                    <input
+                    <span class="hidden text-center font-bold text-sm text-red-500" id="signUpMsg"></span><br>
+                    <span class="hidden text-center font-bold text-sm text-red-500" id="signErrorMsg"></span>
+
+                    <input id="signFname"
                         class="bg-white rounded w-full border border-gray-400 focus:outline-none focus:border-teal-500 text-base px-4 py-2 mb-4"
                         placeholder="First Name" type="text">
-                    <input
+                    <input id="signLname"
                         class="bg-white rounded w-full border border-gray-400 focus:outline-none focus:border-teal-500 text-base px-4 py-2 mb-4"
                         placeholder="Last Name" type="text">
-                    <input
+                    <input id="signEmail"
                         class="bg-white rounded border w-full border-gray-400 focus:outline-none focus:border-teal-500 text-base px-4 py-2 mb-4"
                         placeholder="Email ID (optional)" type="email">
-                    <input
+                    <input id="signDOB"
                         class="bg-white rounded border w-full border-gray-400 focus:outline-none focus:border-teal-500 text-base px-4 py-2 mb-4"
                         placeholder="Date of Birth" type="date">
 
-                    <button
+                    <button id="signUpBtn"
                         class="text-white bg-teal-500  w-1/2 border-0 py-2 px-8 focus:outline-none hover:bg-teal-600 rounded text-lg">Next</button>
-                    <p class="text-xs text-center text-gray-500 mt-3">New User ? <a class="text-teal-500 font-bold"
-                            id="logInBoxToggle">Sign
-                            Up</a>
+                    <p class="text-xs text-center text-gray-500 mt-3">Existing User ? <a class="text-teal-500 font-bold"
+                            id="logInBoxToggle">Login</a>
                     </p>
                 </div>
             </div>
+
+
         </div>
     </section>
 
