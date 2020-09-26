@@ -180,19 +180,33 @@ $(document).ready(() => {
                     var i = 0;
                     resdata.forEach(element => {
                         console.log(resdata[i]);
-
-                        $("#homeFeeds").append(` <div class="p-4 md:w-1/3">
+                        var feedsCard = ` <div class="p-4 md:w-1/3">
                         <div class="feedCard h-full border-2 border-gray-200  overflow-hidden">
 
                             <img class="lg:h-48 md:h-36 w-full object-cover object-center"
                                 src="https://toppernote.herokuapp.com/${resdata[i].fields.image}"
                                 alt="blog">
-                                <button class="myBtn" id="myBtn${resdata[i].pk}" onclick="showModal(${resdata[i].pk})">Open Modal</button>
+                                <button class="myBtn" id="myBtn${resdata[i].pk}" onclick="showModal(${resdata[i].pk})"><i class="fa fa-play" aria-hidden="true"></i>
+                                </button>
                             <div class="px-6 py-4">
-                                <h2 class="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">CATEGORY
-                                </h2>
+                                <h2 class="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">`;
+
+                        for (let index = 0; index < (resdata[i].fields.tag).length; index++) {
+                            var tagData = JSON.parse(resData.tags);
+                            var j = 0;
+                            var itemTag = '';
+                            tagData.forEach(ele => {
+                                if (resdata[i].fields.tag[index] == tagData[j].pk)
+                                    itemTag += tagData[i].fields.name;
+                                j++;
+                            });
+                            feedsCard += `<span class="customFeedTag" style="background="${tagData[i].fields.color}">${itemTag} </span>`;
+                        }
+
+                        feedsCard += `</h2>
                                 <h1 class="title-font text-lg font-medium text-gray-900 mb-3">${resdata[i].fields.head}</h1>
-                                <p class="leading-relaxed mb-3 pr-5 h-20 text-wrap overflow-hidden">${resdata[i].fields.discription}</p>
+                                <p class="leading-relaxed mb-3 pr-5 h-6 text-wrap overflow-hidden " style="     text-overflow: ellipsis;
+                                ">${resdata[i].fields.discription}</p>
                                 <div class="flex items-center flex-wrap ">
                                     <a class="text-teal-500 inline-flex items-center md:mb-2 lg:mb-0">Learn More
                                         <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor"
@@ -207,15 +221,11 @@ $(document).ready(() => {
                                             stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                                             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                             <circle cx="12" cy="12" r="3"></circle>
-                                        </svg>1.2K
+                                        </svg>${resdata[i].fields.date}
                                     </span>
                                     <span class="text-gray-600 inline-flex items-center leading-none text-sm">
-                                        <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none"
-                                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                            <path
-                                                d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z">
-                                            </path>
-                                        </svg>6
+                                    <a class="whatsIcon"> <i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+
                                     </span>
                                 </div>
                             </div>
@@ -224,13 +234,11 @@ $(document).ready(() => {
                     <div id="myModal${resdata[i].pk}" class="modal">
 
                     <!-- Modal content -->
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <p>Some text in the Modal..</p>
+                    <iframe  src="${resdata[i].fields.link}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <button class="close">Close Video<i class="fa fa-close" aria-hidden="true"></i></button>
                     </div>
-
-                    </div>
-                    `);
+                    `;
+                        $("#homeFeeds").append(feedsCard);
                         i++;
                     });
 
