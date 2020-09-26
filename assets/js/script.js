@@ -200,7 +200,7 @@ $(document).ready(() => {
                                     itemTag += tagData[i].fields.name;
                                 j++;
                             });
-                            feedsCard += `<span class="customFeedTag" style="background="${tagData[i].fields.color}">${itemTag} </span>`;
+                            feedsCard += `<span class="customFeedTag mr-1" style="background="${tagData[i].fields.color}">${itemTag} </span>`;
                         }
 
                         feedsCard += `</h2>
