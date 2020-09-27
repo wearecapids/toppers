@@ -176,6 +176,7 @@ $(document).ready(() => {
                 } else if (result.error == false) {
                     var resData = JSON.parse(JSON.stringify(result.data));
                     var resdata = JSON.parse(resData.feed);
+                    var tagData = JSON.parse(resData.tags);
                     // resdata = resData[0];
                     var i = 0;
                     resdata.forEach(element => {
@@ -184,26 +185,12 @@ $(document).ready(() => {
                         <div class="feedCard h-full border-2 border-gray-200  overflow-hidden">
 
                             <img class="lg:h-48 md:h-36 w-full object-cover object-center"
-                                src="https://toppernote.herokuapp.com/${resdata[i].fields.image}"
+                                src="https://toppernote.herokuapp.com/static/${resdata[i].fields.image}"
                                 alt="blog">
                                 <button class="myBtn" id="myBtn${resdata[i].pk}" onclick="showModal(${resdata[i].pk})"><i class="fa fa-play" aria-hidden="true"></i>
                                 </button>
                             <div class="px-6 py-4">
-                                <h2 class="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">`;
-
-                        for (let index = 0; index < (resdata[i].fields.tag).length; index++) {
-                            var tagData = JSON.parse(resData.tags);
-                            var j = 0;
-                            var itemTag = '';
-                            tagData.forEach(ele => {
-                                if (resdata[i].fields.tag[index] == tagData[j].pk)
-                                    itemTag += tagData[i].fields.name;
-                                j++;
-                            });
-                            feedsCard += `<span class="customFeedTag mr-1" style="background="${tagData[i].fields.color}">${itemTag} </span>`;
-                        }
-
-                        feedsCard += `</h2>
+                                <h2 class="tracking-widest text-xs title-font font-medium text-gray-500 mb-1"></h2>
                                 <h1 class="title-font text-lg font-medium text-gray-900 mb-3">${resdata[i].fields.head}</h1>
                                 <p class="leading-relaxed mb-3 pr-5 h-6 text-wrap overflow-hidden " style="     text-overflow: ellipsis;
                                 ">${resdata[i].fields.discription}</p>
