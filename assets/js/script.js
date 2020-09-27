@@ -184,7 +184,7 @@ $(document).ready(() => {
                         <div class="feedCard h-full border-2 border-gray-200  overflow-hidden">
 
                             <img class="lg:h-48 md:h-36 w-full object-cover object-center"
-                                src="https://toppernote.herokuapp.com/${resdata[i].fields.image}"
+                                src="https://toppernote.herokuapp.com/statis/${resdata[i].fields.image}"
                                 alt="blog">
                                 <button class="myBtn" id="myBtn${resdata[i].pk}" onclick="showModal(${resdata[i].pk})"><i class="fa fa-play" aria-hidden="true"></i>
                                 </button>
