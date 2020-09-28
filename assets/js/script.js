@@ -192,7 +192,7 @@ $(document).ready(() => {
                             <div class="px-6 py-4">
                                 <h2 class="tracking-widest text-xs title-font font-medium text-gray-500 mb-1"></h2>
                                 <h1 class="title-font text-lg font-medium text-gray-900 mb-3">${resdata[i].fields.head}</h1>
-                                <p class="leading-relaxed mb-3 pr-5 h-6 text-wrap overflow-hidden " style="     text-overflow: ellipsis;
+                                <p class="leading-relaxed mb-3 pr-5 text-wrap overflow-scroll " style="height:200px;   text-overflow: ellipsis;
                                 ">${resdata[i].fields.discription}</p>
                                 <div class="flex items-center flex-wrap ">
                                     <a class="text-teal-500 inline-flex items-center md:mb-2 lg:mb-0">Learn More
@@ -202,8 +202,7 @@ $(document).ready(() => {
                                             <path d="M12 5l7 7-7 7"></path>
                                         </svg>
                                     </a>
-                                    <span
-                                        class="text-gray-600 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-300">
+                                    <span class="text-gray-600 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-300">
                                         <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none"
                                             stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                                             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
@@ -211,8 +210,7 @@ $(document).ready(() => {
                                         </svg>${resdata[i].fields.date}
                                     </span>
                                     <span class="text-gray-600 inline-flex items-center leading-none text-sm">
-                                    <a class="whatsIcon"> <i class="fa fa-whatsapp" aria-hidden="true"></i></a>
-
+                                    <a href="https://wa.me/?text=${resdata[i].fields.link}" class="whatsIcon"> <i class="fa fa-whatsapp" aria-hidden="true"></i></a>
                                     </span>
                                 </div>
                             </div>
