@@ -39,6 +39,10 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #00a7b3d8; 
   }
+
+p{
+  margin: 0;
+}
 .poppin {
     font-family: var(--poppins);
 }
@@ -131,6 +135,7 @@
 }
 .customFeedTag{
     padding: 2px 4px;
-    border: 1px solid white;
+    border: 1px solid black;
+    color: black;
     filter: invert(100%);
 }

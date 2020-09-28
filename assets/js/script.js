@@ -177,10 +177,33 @@ $(document).ready(() => {
                     var resData = JSON.parse(JSON.stringify(result.data));
                     var resdata = JSON.parse(resData.feed);
                     var tagData = JSON.parse(resData.tags);
-                    // resdata = resData[0];
+
+                    function getTags(id) {
+                        var indx = 0;
+                        var tags = '';
+                        tagData.forEach(element => {
+                            if (tagData[indx].pk == id) {
+                                tags = `<span class="customFeedTag" style="background:${tagData[indx].fields.color}">${tagData[indx].fields.name}</span>`;
+                            }
+                            indx++;
+                        })
+                        return tags;
+                    }
+
+                    // var tagdata = tagData;
+                    // console.log((tagdata.fields));
                     var i = 0;
                     resdata.forEach(element => {
-                        console.log(resdata[i]);
+                        const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+                        let current_datetime = new Date(Date.parse(resdata[i].fields.date));
+                        let formatted_date = current_datetime.getDate() + "-" + months[current_datetime.getMonth()] + "-" + current_datetime.getFullYear()
+                        var tagsd = JSON.parse(JSON.stringify(resdata[i].fields.tag));
+                        var nameArr = tagsd.split(',');
+                        var da = '';
+                        for (let index = 0; index < nameArr.length; index++) {
+                            da += `${getTags(nameArr[index])}`;
+                        }
+
                         var feedsCard = ` <div class="p-4 md:w-1/3">
                         <div class="feedCard h-full border-2 border-gray-200  overflow-hidden">
 
@@ -190,12 +213,12 @@ $(document).ready(() => {
                                 <button class="myBtn" id="myBtn${resdata[i].pk}" onclick="showModal(${resdata[i].pk})"><i class="fa fa-play" aria-hidden="true"></i>
                                 </button>
                             <div class="px-6 py-4">
-                                <h2 class="tracking-widest text-xs title-font font-medium text-gray-500 mb-1"></h2>
+                                <h2 class="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">${da}</h2>
                                 <h1 class="title-font text-lg font-medium text-gray-900 mb-3">${resdata[i].fields.head}</h1>
-                                <p class="leading-relaxed mb-3 pr-5 text-wrap overflow-scroll " style="height:200px;   text-overflow: ellipsis;
+                                <p class="leading-relaxed mb-3 m-0 pr-5 w-full text-wrap overflow-scroll " style="height:200px;
                                 ">${resdata[i].fields.discription}</p>
                                 <div class="flex items-center flex-wrap ">
-                                    <a class="text-teal-500 inline-flex items-center md:mb-2 lg:mb-0">Learn More
+                                    <a target="_blank" href="${resdata[i].fields.sourcelink}" class="text-teal-500 inline-flex items-center md:mb-2 lg:mb-0">Read More
                                         <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor"
                                             stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path d="M5 12h14"></path>
@@ -203,11 +226,35 @@ $(document).ready(() => {
                                         </svg>
                                     </a>
                                     <span class="text-gray-600 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-300">
-                                        <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none"
-                                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                            <circle cx="12" cy="12" r="3"></circle>
-                                        </svg>${resdata[i].fields.date}
+                                    <svg class="pr-2" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                    width="26.449px" height="26.448px" viewBox="0 0 36.449 36.448" style="enable-background:new 0 0 36.449 36.448;"
+                                    xml:space="preserve">
+                               <g>
+                                   <g>
+                                       <rect x="12.858" y="14.626" width="4.596" height="4.089"/>
+                                       <rect x="18.996" y="14.626" width="4.595" height="4.089"/>
+                                       <rect x="25.128" y="14.626" width="4.596" height="4.089"/>
+                                       <rect x="6.724" y="20.084" width="4.595" height="4.086"/>
+                                       <rect x="12.858" y="20.084" width="4.596" height="4.086"/>
+                                       <rect x="18.996" y="20.084" width="4.595" height="4.086"/>
+                                       <rect x="25.128" y="20.084" width="4.596" height="4.086"/>
+                                       <rect x="6.724" y="25.54" width="4.595" height="4.086"/>
+                                       <rect x="12.858" y="25.54" width="4.596" height="4.086"/>
+                                       <rect x="18.996" y="25.54" width="4.595" height="4.086"/>
+                                       <rect x="25.128" y="25.54" width="4.596" height="4.086"/>
+                                       <path d="M31.974,32.198c0,0.965-0.785,1.75-1.75,1.75h-24c-0.965,0-1.75-0.785-1.75-1.75V12.099h-2.5v20.099
+                                           c0,2.343,1.907,4.25,4.25,4.25h24c2.344,0,4.25-1.907,4.25-4.25V12.099h-2.5V32.198z"/>
+                                       <path d="M30.224,3.948h-1.098V2.75c0-1.517-1.197-2.75-2.67-2.75c-1.474,0-2.67,1.233-2.67,2.75v1.197h-2.74V2.75
+                                           c0-1.517-1.197-2.75-2.67-2.75c-1.473,0-2.67,1.233-2.67,2.75v1.197h-2.74V2.75c0-1.517-1.197-2.75-2.67-2.75
+                                           c-1.473,0-2.67,1.233-2.67,2.75v1.197H6.224c-2.343,0-4.25,1.907-4.25,4.25v2h2.5h27.5h2.5v-2
+                                           C34.474,5.855,32.568,3.948,30.224,3.948z M11.466,7.646c0,0.689-0.525,1.25-1.17,1.25s-1.17-0.561-1.17-1.25V2.75
+                                           c0-0.689,0.525-1.25,1.17-1.25s1.17,0.561,1.17,1.25V7.646z M19.546,7.646c0,0.689-0.525,1.25-1.17,1.25s-1.17-0.561-1.17-1.25
+                                           V2.75c0-0.689,0.525-1.25,1.17-1.25s1.17,0.561,1.17,1.25V7.646z M27.626,7.646c0,0.689-0.525,1.25-1.17,1.25
+                                           c-0.646,0-1.17-0.561-1.17-1.25V2.75c0-0.689,0.524-1.25,1.17-1.25c0.645,0,1.17,0.561,1.17,1.25V7.646z"/>
+                                   </g>
+                               </g>
+                               
+                               </svg>${formatted_date}
                                     </span>
                                     <span class="text-gray-600 inline-flex items-center leading-none text-sm">
                                     <a href="https://wa.me/?text=${resdata[i].fields.link}" class="whatsIcon"> <i class="fa fa-whatsapp" aria-hidden="true"></i></a>
@@ -219,8 +266,8 @@ $(document).ready(() => {
                     <div id="myModal${resdata[i].pk}" class="modal">
 
                     <!-- Modal content -->
-                    <iframe  src="${resdata[i].fields.link}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        <button class="close">Close Video<i class="fa fa-close" aria-hidden="true"></i></button>
+                    <iframe  src="https://www.youtube.com/embed/${(resdata[i].fields.link).slice(17,)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <button class="close">Close Video<i class="fa close fa-close" aria-hidden="true"></i></button>
                     </div>
                     `;
                         $("#homeFeeds").append(feedsCard);
