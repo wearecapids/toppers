@@ -1,3 +1,4 @@
+var BASE_URL = 'http://ec2-15-207-72-161.ap-south-1.compute.amazonaws.com/';
 $(document).ready(() => {
 
 
@@ -29,7 +30,7 @@ $(document).ready(() => {
             $.ajax({
                 type: "POST",
                 contentType: "application/x-www-form-urlencoded",
-                url: "https://toppernote.herokuapp.com/toppersnote/user/otp",
+                url: BASE_URL+"toppersnote/user/otp",
                 data: formData,
                 cache: false,
                 success: function (result) {
@@ -74,7 +75,7 @@ $(document).ready(() => {
             $.ajax({
                 type: "POST",
                 contentType: "application/x-www-form-urlencoded",
-                url: "https://toppernote.herokuapp.com/toppersnote/user/verify",
+                url: BASE_URL+"toppersnote/user/verify",
                 data: formData,
                 cache: false,
                 success: function (result) {
@@ -134,7 +135,7 @@ $(document).ready(() => {
             $.ajax({
                 type: "POST",
                 contentType: "application/x-www-form-urlencoded",
-                url: "https://toppernote.herokuapp.com/toppersnote/user/register",
+                url: BASE_URL+"toppersnote/user/register",
                 data: formData,
                 cache: false,
                 success: function (result) {
@@ -167,7 +168,7 @@ $(document).ready(() => {
         $.ajax({
             type: "GET",
             contentType: "application/x-www-form-urlencoded",
-            url: "https://toppernote.herokuapp.com/toppersnote/app/feeds",
+            url: BASE_URL+"toppersnote/app/feeds",
             cache: false,
             success: function (result) {
                 console.log(result);
@@ -208,7 +209,7 @@ $(document).ready(() => {
                         <div class="feedCard h-full border-2 border-gray-200  overflow-hidden">
 
                             <img class="lg:h-48 md:h-36 w-full object-cover object-center"
-                                src="https://toppernote.herokuapp.com/static/${resdata[i].fields.image}"
+                                src=${BASE_URL}"static/${resdata[i].fields.image}"
                                 alt="blog">
                                 <button class="myBtn" id="myBtn${resdata[i].pk}" onclick="showModal(${resdata[i].pk})"><i class="fa fa-play" aria-hidden="true"></i>
                                 </button>
